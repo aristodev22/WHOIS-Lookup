@@ -1,0 +1,28 @@
+{
+  "name": "whois-app",
+  "version": "1.0.0",
+  "description": "A simple app for searching WHOIS information of domains.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "build:css": "tailwind build -i src/style.css -o public/tailwind.css"
+  },
+  "keywords": [
+    "whois, lookup, whois-app"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "geoip-lite": "^1.4.2",
+    "ipaddr.js": "^1.9.1",
+    "is-valid-domain": "^0.1.2",
+    "mongodb": "^4.1.0",
+    "morgan": "^1.10.0",
+    "whois-light": "^1.1.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^2.2.7"
+  }
+}
