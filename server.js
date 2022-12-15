@@ -52,16 +52,14 @@ app.post("/getwhois", (req, res) => {
   let domName = req.body.domaininput;
   // let reqIp = "185.35.50.4"
   var reqIp =  req.header('x-forwarded-for') || req.socket.remoteAddress;
-
-  // Pass reqIP into IPV4 type
+  var reqIp4;
+  // Parse reqIP into IPV4 type
   if (ipaddr.isValid(reqIp)) {
-    const addr = ipaddr.parse(reqIp);
-    if (addr.kind() === 'ipv6' && addr.isIPv4MappedAddress()) {
-      reqIp = addr.toIPv4Address().toString();
-    }
+    reqIp4 = ipaddr.process(reqIp).toString();
   }
 console.log(reqIp);
-  var geo = geoip.lookup(reqIp);
+console.log(reqIp4);
+  var geo = geoip.lookup(reqIp4);
   var geoCity = geo.city;
   var geoCountry = geo.country;
 
