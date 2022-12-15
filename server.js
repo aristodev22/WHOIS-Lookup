@@ -58,6 +58,7 @@ app.post("/getwhois", (req, res) => {
     reqIp4 = ipaddr.process(reqIp).toString();
   }
 console.log(reqIp);
+console.log(typeof reqIp);
 console.log(reqIp4);
   var geo = geoip.lookup(reqIp4);
   var geoCity = geo.city;
