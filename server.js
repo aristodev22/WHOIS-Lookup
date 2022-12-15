@@ -51,7 +51,7 @@ app.post("/getwhois", (req, res) => {
   let requestObj;
   let domName = req.body.domaininput;
   // let reqIp = "185.35.50.4"
-  var reqIp =  req.header('x-forwarded-for') || req.socket.remoteAddress;
+  var reqIp =  req.ip;
   var reqIp4;
   // Parse reqIP into IPV4 type
   if (ipaddr.isValid(reqIp)) {
@@ -66,9 +66,9 @@ console.log(reqIp4);
   // Create an object from the request
   requestObj = {
     domain: domName, 
-    IP: reqIp,
+    IP: reqIp4,
     city: geoCity,
-   country: geoCountry,
+    country: geoCountry,
     time: Date()
       }
 
