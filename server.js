@@ -53,13 +53,23 @@ app.post("/getwhois", (req, res) => {
   // let reqIp = "185.35.50.4"
   var reqIp =  req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   var reqIp4;
-  // Parse reqIP into IPV4 type
-  if (ipaddr.isValid(reqIp)) {
-    reqIp4 = ipaddr.process(reqIp).toString();
-  }
+
+  if (reqIp.length > 16 ) {
+  reqIp4 = reqIp.substring(0, str.indexOf(','));
+  return reqIp4;
+}
+
+  // var reqIp4;
+  // // Parse reqIP into IPV4 type
+  // if (ipaddr.isValid(reqIp)) {
+  //   reqIp4 = ipaddr.process(reqIp).toString();
+  //   return reqIp4;
+  // }
+
 console.log(reqIp);
 console.log(typeof reqIp);
 console.log(reqIp4);
+console.log(typeof reqIp4);
   var geo = geoip.lookup(reqIp4);
   var geoCity = geo.city;
   var geoCountry = geo.country;
