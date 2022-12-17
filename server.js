@@ -23,7 +23,6 @@ const path = require('path')
 var morgan = require('morgan')
 const WhoisLight = require("whois-light");
 var isValidDomain = require('is-valid-domain')
-const ipaddr = require('ipaddr.js');
 var geoip = require('geoip-lite');
 const { MongoClient } = require('mongodb');
 const dotenv = require('dotenv')
@@ -35,7 +34,6 @@ const port = process.env.PORT || 2500
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use(morgan('short'))
-// app.use(express.static(path.join(__dirname, "public")))
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -50,25 +48,13 @@ app.get("/", (req, res) => {
 app.post("/getwhois", (req, res) => {
   let requestObj;
   let domName = req.body.domaininput;
-  // let reqIp = "185.35.50.4"
   var reqIp =  req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   var reqIp4;
-
   if (reqIp.length > 16 ) {
   reqIp4 = reqIp.substring(0, reqIp.indexOf(','));
 }
-
-  // var reqIp4;
-  // // Parse reqIP into IPV4 type
-  // if (ipaddr.isValid(reqIp)) {
-  //   reqIp4 = ipaddr.process(reqIp).toString();
-  //   return reqIp4;
-  // }
-
 console.log(reqIp);
-console.log(typeof reqIp);
 console.log(reqIp4);
-console.log(typeof reqIp4);
   var geo = geoip.lookup(reqIp4);
   var geoCity = geo.city;
   var geoCountry = geo.country;
