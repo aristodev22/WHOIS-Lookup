@@ -55,7 +55,7 @@ app.post("/getwhois", (req, res) => {
   var reqIp4;
 
   if (reqIp.length > 16 ) {
-  reqIp4 = reqIp.substring(0, str.indexOf(','));
+  reqIp4 = reqIp.substring(0, reqIp.indexOf(','));
   return reqIp4;
 }
 
