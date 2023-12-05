@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.status(301).redirect("https://powerdesign.com.ng/whois-lookup") 
+  res.status(301).redirect("https://digitalyeast.com/whois-lookup") 
 });
 
 app.post("/getwhois", (req, res) => {
